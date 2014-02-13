@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Mort Bay Consulting//DTD Configure//EN" "http://jetty.mortbay.org/configure.dtd">
+<Configure id="FileServer" class="org.eclipse.jetty.server.Server">
+
+    <Call name="addConnector">
+      <Arg>
+          <New class="org.eclipse.jetty.server.nio.SelectChannelConnector">
+            <Set name="port">8080</Set>
+            <Set name="Host">localhost</Set>
+          </New>
+      </Arg>
+    </Call>
+
+    <Set name="handler">
+      <New class="org.eclipse.jetty.server.handler.HandlerList">
+        <Set name="handlers">
+          <Array type="org.eclipse.jetty.server.Handler">
+            <Item>
+              <New class="org.eclipse.jetty.webapp.WebAppContext">
+                <Set name="contextPath">/</Set>
+                <Set name="war">jetty-webapp.war</Set>
+              </New>
+            </Item>
+          </Array>
+        </Set>
+      </New>
+    </Set>
+<!--
+  <New id="onewalletDS" class="org.eclipse.jetty.plus.jndi.Resource">
+    <Arg>myDS</Arg>
+    <Arg>
+      <New class="com.mchange.v2.c3p0.ComboPooledDataSource">
+         <Set name="driverClass">net.sourceforge.jtds.jdbcx.JtdsDataSource</Set>
+         <Set name="user">user</Set>
+         <Set name="password">password</Set>
+         <Set name="jdbcUrl">jdbc:jtds:sqlserver://localhost/myds</Set>
+     </New>
+    </Arg>
+  </New>
+-->
+</Configure>
