@@ -1,0 +1,30 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+    <servlet-name>JAX-RS Servlet</servlet-name>
+    <servlet-class>org.apache.wink.server.internal.servlet.RestServlet</servlet-class>
+    <init-param>
+      <param-name>javax.ws.rs.Application</param-name>
+      <!-- <param-value>org.eclipse.lyo.oslc4j.bugzilla.services.BugzillaApplication</param-value> -->
+      <param-value>dk.diku.lindsgaard.prototype1.services.Prototype1Application</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>JAX-RS Servlet</servlet-name>
+    <url-pattern>/services/*</url-pattern>
+  </servlet-mapping>
+  <!-- Not sure what this is -->
+  <servlet>
+    <servlet-name>restSdkAdmin</servlet-name>
+    <servlet-class>org.apache.wink.server.internal.servlet.AdminServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>restSdkAdmin</servlet-name>
+    <url-pattern>/admin</url-pattern>
+  </servlet-mapping>
+</web-app>
