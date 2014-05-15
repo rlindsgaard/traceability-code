@@ -17,6 +17,7 @@ public class Prototype1Application extends OslcWinkApplication {
 	static {
 		RESOURCE_CLASSES.add(ServiceProviderCatalogService.class);
 		RESOURCE_CLASSES.add(GitRepositoryService.class);
+		RESOURCE_CLASSES.add(GitCommitService.class);
 	} 
 	
 	public Prototype1Application()

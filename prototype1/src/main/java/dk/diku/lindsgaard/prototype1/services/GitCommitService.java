@@ -66,60 +66,32 @@ public class GitCommitService {
                                       @QueryParam("oslc.orderBy")     final String orderBy,
                                       @QueryParam("oslc.searchTerms") final String searchTerms) throws ServletException, IOException
 	{
-int page=0;
+    int page=0;
         
-        if (null != pageString) {
-            page = Integer.parseInt(pageString);
-        }
+    if (null != pageString) {
+      page = Integer.parseInt(pageString);
+    }
         
 		int limit=20;
 		
-//        Map<String, String> prefixMap;
-//        
-//        try {
-//            prefixMap = QueryUtils.parsePrefixes(prefix);
-//        } catch (ParseException e) {
-//           throw new IOException(e);
-//        }
-//       
-//        
-//        Property properties;
-//        
-//        try {
-//            properties = QueryUtils.parseSelect("dcterms:title", prefixMap);
-//        } catch (ParseException e) {
-//            throw new IOException(e);
-//        }
-//        
-//        Map<String, Object> propMap =
-//            QueryUtils.invertSelectedProperties(properties);
-//        
-//        final List<BugzillaChangeRequest> results =
-//            BugzillaManager.getBugsByProduct(httpServletRequest, productId, page, limit,
-//                                             where, prefixMap, propMap, orderBy,
-//                                             searchTerms);
 		final List<GitCommit> results = GitManager.getCommits("master");
+    System.out.println(results.size());
 		
-        if (results != null) {
-        	
-        	httpServletRequest.setAttribute("results", results);
-        	
+    if (results != null) {
+     	httpServletRequest.setAttribute("results", results);
+      Object nextPageAttr = httpServletRequest.getAttribute(Constants.NEXT_PAGE);
+      if (nextPageAttr != null) {
+      	httpServletRequest.setAttribute("nextPageUri", 
+      	uriInfo.getAbsolutePath().toString() + "?oslc.paging=true&amp;page=" + nextPageAttr);
+      }
+      
+      ServiceProvider serviceProvider = ServiceProviderCatalogSingleton.getServiceProvider(httpServletRequest, productId);
+      httpServletRequest.setAttribute("serviceProvider", serviceProvider);
 
-        	
-            Object nextPageAttr = httpServletRequest.getAttribute(Constants.NEXT_PAGE);
-            
-            if (nextPageAttr != null) {
-        		httpServletRequest.setAttribute("nextPageUri", 
-        				uriInfo.getAbsolutePath().toString() + "?oslc.paging=true&amp;page=" + nextPageAttr);
-        	}
-        	
-        	ServiceProvider serviceProvider = ServiceProviderCatalogSingleton.getServiceProvider(httpServletRequest, productId);
-        	httpServletRequest.setAttribute("serviceProvider", serviceProvider);
-
-        	RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/cm/changerequest_collection_html.jsp");
-        	rd.forward(httpServletRequest,httpServletResponse);
-        }
+      RequestDispatcher rd = httpServletRequest.getRequestDispatcher("/commit_collection_html.jsp");
+      rd.forward(httpServletRequest,httpServletResponse);
+    }
 		
-		throw new WebApplicationException(Status.NOT_FOUND);
+		throw new WebApplicationException(Status.SERVICE_UNAVAILABLE);
 	}
 }

@@ -106,9 +106,9 @@ public class GitRepositoryService {
      * @param serviceProviderId
      */
     @GET
-    @Path("{serviceProviderId}")
+    @Path("{repositoryId}")
     @Produces(MediaType.TEXT_HTML)
-    public void getHtmlServiceProvider(@PathParam("serviceProviderId") final String serviceProviderId)
+    public void getHtmlServiceProvider(@PathParam("repositoryId") final String serviceProviderId)
     {
     	ServiceProvider serviceProvider = ServiceProviderCatalogSingleton.getServiceProvider(httpServletRequest, serviceProviderId);
     	

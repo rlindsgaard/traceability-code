@@ -15,7 +15,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
         <title>Bugzilla OSLC Adapter: Service Provider for <%= serviceProvider.getTitle() + "(" + serviceProvider.getIdentifier() + ")" %></title>
-        <link rel="shortcut icon" href="<%= bugzillaUri %>/images/favicon.ico">
     </head>
     <body onload="">
     
@@ -44,9 +43,10 @@
     
                 <h1>Query Results</h1>
 
-                <% for (BugzillaChangeRequest changeRequest : changeRequests) { %>                
-                <p>Summary: <%= changeRequest.getIdentifier() %><br /><a href="<%= changeRequest.getAbout() %>">
-                    <%= changeRequest.getAbout() %></a></p>
+                <% for (GitCommit commit : commits) { %>         
+                foo
+                <p>Summary: <%= commit.getIdentifier() %><br /><a href="<%= commit.getAbout() %>">
+                    <%= commit.getAbout() %></a></p>
                 <% } %>
                 <% if (nextPageUri != null) { %><a href="<%= nextPageUri %>">Next Page</a><% } %>
 

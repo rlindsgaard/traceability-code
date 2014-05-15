@@ -3,6 +3,7 @@ package dk.diku.lindsgaard.prototype1.resources;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -26,8 +27,7 @@ import org.eclipse.lyo.oslc4j.core.model.ValueType;
 public class GitCommit extends AbstractResource {
 	
 	private final Set<URI>      rdfTypes                    = new TreeSet<URI>();
-	
-	private List<String> creators;
+	private List<String> creators = new ArrayList<String>();
 	private String identifier;
 	private URI      serviceProvider;
 	private String title;

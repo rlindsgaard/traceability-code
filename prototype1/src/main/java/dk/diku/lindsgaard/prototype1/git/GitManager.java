@@ -1,6 +1,5 @@
 package dk.diku.lindsgaard.prototype1.git;
 
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +20,7 @@ abstract public class GitManager {
 			
 			commits.add(c1);
 		} catch(Exception e) {
-			
+			System.out.println("Fuck!" + e);
 		}
 		
 		return commits;

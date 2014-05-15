@@ -245,7 +245,7 @@ public class ServiceProviderCatalogSingleton {
 				
 				//Setup some test verifying that the repository exists
 				final Map<String,Object> parameterMap = new HashMap<String, Object>();
-				parameterMap.put("repoId",repository);
+				parameterMap.put("repositoryId",repository);
 				
 				ServiceProvider serviceProvider = GitServiceProviderFactory.createServiceProvider(basePath,
 	                    repository,
