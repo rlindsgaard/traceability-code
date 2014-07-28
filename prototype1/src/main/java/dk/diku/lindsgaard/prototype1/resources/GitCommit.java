@@ -7,30 +7,27 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.TreeSet;
 
-import dk.diku.lindsgaard.prototype1.Constants;
+import dk.diku.lindsgaard.prototype1.util.Constants;
 
-import org.eclipse.lyo.oslc4j.core.annotation.OslcDescription;
-import org.eclipse.lyo.oslc4j.core.annotation.OslcName;
-import org.eclipse.lyo.oslc4j.core.annotation.OslcOccurs;
-import org.eclipse.lyo.oslc4j.core.annotation.OslcPropertyDefinition;
-import org.eclipse.lyo.oslc4j.core.annotation.OslcRange;
-import org.eclipse.lyo.oslc4j.core.annotation.OslcReadOnly;
-import org.eclipse.lyo.oslc4j.core.annotation.OslcRepresentation;
-import org.eclipse.lyo.oslc4j.core.annotation.OslcTitle;
-import org.eclipse.lyo.oslc4j.core.annotation.OslcValueType;
+import org.eclipse.lyo.oslc4j.core.annotation.*;
 import org.eclipse.lyo.oslc4j.core.model.AbstractResource;
 import org.eclipse.lyo.oslc4j.core.model.Occurs;
 import org.eclipse.lyo.oslc4j.core.model.OslcConstants;
 import org.eclipse.lyo.oslc4j.core.model.Representation;
 import org.eclipse.lyo.oslc4j.core.model.ValueType;
 
+@OslcNamespace(Constants.CHANGE_MANAGEMENT_NAMESPACE)
+@OslcName(Constants.CHANGESET)
+@OslcResourceShape(title = "Configuration Resource Shape", describes = Constants.TYPE_CONFIGURATION)
 public class GitCommit extends AbstractResource {
-	
+	//TODO: Make abstract Configuration class
+
 	private final Set<URI>      rdfTypes                    = new TreeSet<URI>();
-	private List<String> creators = new ArrayList<String>();
-	private String identifier;
-	private URI      serviceProvider;
-	private String title;
+	private List<Person>        creators                    = new ArrayList<Person>();
+
+	private String              identifier;
+	private URI                 serviceProvider;
+	private String              title;
 	
     public GitCommit()
             throws URISyntaxException
@@ -48,17 +45,17 @@ public class GitCommit extends AbstractResource {
          rdfTypes.add(new URI(Constants.TYPE_GIT_COMMIT));
      }
      
-     @OslcDescription("Creator or creators of resource.")
+     @OslcDescription("The author of the commit.")
      @OslcName("creator")
      @OslcPropertyDefinition(OslcConstants.DCTERMS_NAMESPACE + "creator")
      @OslcRepresentation(Representation.Inline)
      @OslcTitle("Creators")
-     public List<String> getCreators()
+     public List<Person> getCreators()
      {
          return creators;
      }
      
-     @OslcDescription("A unique identifier for a resource. Assigned by the service provider when a resource is created. Not intended for end-user display.")
+     @OslcDescription("The commit SHA-1 hash.")
      @OslcOccurs(Occurs.ExactlyOne)
      @OslcPropertyDefinition(OslcConstants.DCTERMS_NAMESPACE + "identifier")
      @OslcReadOnly
@@ -77,7 +74,7 @@ public class GitCommit extends AbstractResource {
          return serviceProvider;
      }
      
-     @OslcDescription("Title (reference: Dublin Core) or often a single line summary of the resource represented as rich text in XHTML content.")
+     @OslcDescription("FIXME: The first line of the commit message.")
      @OslcOccurs(Occurs.ExactlyOne)
      @OslcPropertyDefinition(OslcConstants.DCTERMS_NAMESPACE + "title")
      @OslcTitle("Title")
@@ -87,7 +84,7 @@ public class GitCommit extends AbstractResource {
          return title;
      }
      
-     public void setCreators(final List<String> creators)
+     public void setCreators(final List<Person> creators)
      {
          this.creators.clear();
 

@@ -33,7 +33,7 @@ public class ServiceProviderCatalogSingleton {
         serviceProviderCatalog.setAbout(new URI(ServiceProviderRegistryURIs.getServiceProviderRegistryURI()));
         serviceProviderCatalog.setTitle("OSLC Service Provider Catalog");
         serviceProviderCatalog.setDescription("OSLC Service Provider Catalog");
-        serviceProviderCatalog.setPublisher(new Publisher("Project Lyo", "org.eclipse.lyo.oslc4j.bugzilla"));
+        serviceProviderCatalog.setPublisher(new Publisher("Project Lyo", "dk.diku.lindsgaard.prototype1"));
         serviceProviderCatalog.getPublisher().setIcon(new URI("http://open-services.net/css/images/logo-forflip.png"));
 		} catch (final URISyntaxException exception) {
             // We should never get here.
@@ -62,7 +62,7 @@ public class ServiceProviderCatalogSingleton {
         }
     }
 
-    public static ServiceProvider getServiceProvider(HttpServletRequest httpServletRequest, final String serviceProviderId) 
+    public static ServiceProvider getServiceProvider(HttpServletRequest httpServletRequest, final String serviceProviderId)
     {
         ServiceProvider serviceProvider;
 
@@ -254,7 +254,8 @@ public class ServiceProviderCatalogSingleton {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new WebApplicationException(e,Status.INTERNAL_SERVER_ERROR);
+            System.out.print(e.toString());
+			throw new WebApplicationException(e,Status.NOT_FOUND);
 		}
     }
 }

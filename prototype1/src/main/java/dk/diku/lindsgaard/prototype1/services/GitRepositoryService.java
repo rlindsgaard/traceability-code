@@ -56,30 +56,30 @@ public class GitRepositoryService {
     /**
      * RDF/XML, XML and JSON representations of a single OSLC Service Provider
      * 
-     * @param serviceProviderId
+     * @param repositoryId
      * @return
      */
     @GET
-    @Path("{serviceProviderId}")
+    @Path("{repositoryId}")
     @Produces({OslcMediaType.APPLICATION_RDF_XML, OslcMediaType.APPLICATION_XML, OslcMediaType.APPLICATION_JSON})
-    public ServiceProvider getServiceProvider(@PathParam("serviceProviderId") final String serviceProviderId)
+    public ServiceProvider getServiceProvider(@PathParam("repositoryId") final String repositoryId)
     {
     	httpServletResponse.addHeader("Oslc-Core-Version","2.0");
-        return ServiceProviderCatalogSingleton.getServiceProvider(httpServletRequest, serviceProviderId);
+        return ServiceProviderCatalogSingleton.getServiceProvider(httpServletRequest, repositoryId);
     }
 
     /**
      * OSLC compact XML representation of a single OSLC Service Provider
      * 
-     * @param serviceProviderId
+     * @param repositoryId
      * @return
      */
     @GET
-    @Path("{serviceProviderId}")
+    @Path("{repositoryId}")
     @Produces({OslcMediaType.APPLICATION_X_OSLC_COMPACT_XML, OslcMediaType.APPLICATION_X_OSLC_COMPACT_JSON})
-    public Compact getCompact(@PathParam("serviceProviderId") final String serviceProviderId)
+    public Compact getCompact(@PathParam("repositoryId") final String repositoryId)
     {
-        final ServiceProvider serviceProvider = ServiceProviderCatalogSingleton.getServiceProvider(httpServletRequest, serviceProviderId);
+        final ServiceProvider serviceProvider = ServiceProviderCatalogSingleton.getServiceProvider(httpServletRequest, repositoryId);
 
         if (serviceProvider != null) {
         	
@@ -103,14 +103,14 @@ public class GitRepositoryService {
      * 
      * Forwards to serviceprovider_html.jsp to create the html document
      * 
-     * @param serviceProviderId
+     * @param repositoryId
      */
     @GET
     @Path("{repositoryId}")
     @Produces(MediaType.TEXT_HTML)
-    public void getHtmlServiceProvider(@PathParam("repositoryId") final String serviceProviderId)
+    public void getHtmlServiceProvider(@PathParam("repositoryId") final String repositoryId)
     {
-    	ServiceProvider serviceProvider = ServiceProviderCatalogSingleton.getServiceProvider(httpServletRequest, serviceProviderId);
+    	ServiceProvider serviceProvider = ServiceProviderCatalogSingleton.getServiceProvider(httpServletRequest, repositoryId);
     	
     	Service [] services = serviceProvider.getServices();
     	

@@ -79,6 +79,7 @@ public class ServiceProviderCatalogService extends HttpServlet {
     @Produces({OslcMediaType.APPLICATION_RDF_XML, OslcMediaType.APPLICATION_XML, OslcMediaType.APPLICATION_JSON})
     public ServiceProviderCatalog getServiceProviderCatalog()
     {
+
         ServiceProviderCatalog catalog =  ServiceProviderCatalogSingleton.getServiceProviderCatalog(httpServletRequest);
         
         if (catalog != null) {
@@ -94,7 +95,7 @@ public class ServiceProviderCatalogService extends HttpServlet {
     @GET
     @Path("{serviceProviderCatalogId}")
     @Produces(MediaType.TEXT_HTML)
-    public void getHtmlServiceProvider(@PathParam("serviceProviderId") final String serviceProviderId) {
+    public void getHtmlServiceProvider(@PathParam("repositoryId") final String repositoryId) {
     	
     	ServiceProviderCatalog catalog = ServiceProviderCatalogSingleton.getServiceProviderCatalog(httpServletRequest);
     	

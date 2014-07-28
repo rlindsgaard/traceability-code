@@ -12,7 +12,7 @@ import org.eclipse.lyo.oslc4j.core.model.Publisher;
 import org.eclipse.lyo.oslc4j.core.model.ServiceProvider;
 import org.eclipse.lyo.oslc4j.core.model.ServiceProviderFactory;
 
-import dk.diku.lindsgaard.prototype1.Constants;
+import dk.diku.lindsgaard.prototype1.util.Constants;
 import dk.diku.lindsgaard.prototype1.services.GitCommitService;
 import dk.diku.lindsgaard.prototype1.services.GitRepositoryService;
 
