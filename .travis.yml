@@ -1,1 +1,2 @@
 language: java
+script: cd prototype2 && mvn spring-boot:run
