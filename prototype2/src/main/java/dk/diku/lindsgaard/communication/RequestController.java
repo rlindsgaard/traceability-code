@@ -2,6 +2,7 @@ package dk.diku.lindsgaard.communication;
 
 import dk.diku.lindsgaard.relation.ActionDispatcher;
 import dk.diku.lindsgaard.relation.ActionHandler;
+import dk.diku.lindsgaard.relation.ActionHandlerFactory;
 import dk.diku.lindsgaard.utils.Action;
 import dk.diku.lindsgaard.utils.Tuple;
 import org.springframework.validation.BindingResult;
@@ -27,6 +28,7 @@ public class RequestController {
 
 
         ActionDispatcher ad = ActionDispatcher.getInstance();
+        ActionHandler actionHandler = ActionHandlerFactory.createActionHandler(name);
         ad.addObserver(actionHandler);
     }
 }

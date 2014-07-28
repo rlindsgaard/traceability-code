@@ -17,8 +17,6 @@ public class Artifact {
     private Date created;
     private Date modified;
 
-    public Artifact
-
     public String getIdentifier() {
         return identifier;
     }

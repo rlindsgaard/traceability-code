@@ -13,12 +13,11 @@ public class ActionHandlerFactory {
     private ActionHandlerFactory() {
     }
 
-    public ActionHandler getActionHandler(String name) {
-        ActionHandler = null;
+    public static ActionHandler createActionHandler(String name) {
+        ActionHandler actionHandler = null;
         if(name.equals("scm")) {
 
         }
-        return actionHandler;28 66 50 38
-                617922 10
+        return actionHandler;
     }
 }
